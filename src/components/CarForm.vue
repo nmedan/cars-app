@@ -77,10 +77,13 @@
         </div>
       <div class="form-group row">
         <div>
-          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+          <button name="submit" type="submit" class="btn btn-success">Submit</button>
         </div>
         <div>
           <button name="reset" type="reset" class="btn btn-danger">Reset</button>
+        </div>
+        <div>
+          <button name="button" type="button" @click="getPreview()" class="btn btn-primary">Preview</button>
         </div>
       </div>
     </form>
@@ -125,6 +128,19 @@ export default {
               years.push(i);
             }
             return years;
+        },
+
+        getPreview() {
+            let brand = document.getElementById('brand').value;
+            let model = document.getElementById('model').value;
+            let year = document.getElementById('year').value;
+            let maxSpeed = document.getElementById('maxSpeed').value;
+            let numberOfDoors = document.getElementById('numberOfDoors').value;
+            let engine = document.getElementById('engine').value;
+            let isAutomatic = document.getElementById('isAutomatic').value;
+            alert(brand + '\n' + model+ '\n'+ year+'\n'+ maxSpeed + '\n'
+            +numberOfDoors +'\n' + engine +'\n' + isAutomatic +'\n');
+
         }
         
     }
