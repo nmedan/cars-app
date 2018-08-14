@@ -21,7 +21,10 @@
         <label for="year" class="col-4 col-form-label">Year</label>
         <div class="col-8">
           <select id="year" name="year" type="number" required="required" class="form-control here" v-model="car.year">
-              <option  v-for="(year, key) in getYears()" :key="key" :value="year">
+              <option selected="selected">
+                   Select year
+              </option>
+              <option   v-for="(year, key) in getYears()" :key="key" :value="year">
                   {{year}}
               </option>
           </select>
@@ -73,8 +76,11 @@
           </div>
         </div>
       <div class="form-group row">
-        <div class="offset-4 col-8">
+        <div>
           <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div>
+          <button name="reset" type="reset" class="btn btn-danger">Reset</button>
         </div>
       </div>
     </form>
