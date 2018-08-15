@@ -5,7 +5,7 @@
         <label for="brand" class="col-4 col-form-label">Brand</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="brand" name="brand" type="text" required="required" class="form-control here" v-model="car.brand">
+            <input id="brand" name="brand" type="text" minlength="2" required="required" class="form-control here" v-model="car.brand">
           </div>
         </div>
       </div>
@@ -13,7 +13,7 @@
         <label for="model" class="col-4 col-form-label">Model</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="model" name="model" type="text" required="required" class="form-control here" v-model="car.model">
+            <input id="model" name="model" type="text" minlength="2" required="required" class="form-control here" v-model="car.model">
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
         <label for="maxSpeed" class="col-4 col-form-label">Maximum speed</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="maxSpeed" name="maxSpeed" type="number" required="required" class="form-control here" v-model="car.maxSpeed">
+            <input id="maxSpeed" name="maxSpeed" type="number" class="form-control here" v-model="car.maxSpeed">
           </div>
         </div>
       </div>
