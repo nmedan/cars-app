@@ -21,7 +21,7 @@
         <label for="year" class="col-4 col-form-label">Year</label>
         <div class="col-8">
           <select id="year" name="year" type="number" required="required" class="form-control here" v-model="car.year">
-              <option selected="selected">
+              <option selected value="">
                    Select year
               </option>
               <option   v-for="(year, key) in getYears()" :key="key" :value="year">
@@ -131,15 +131,15 @@ export default {
         },
 
         getPreview() {
-            let brand = document.getElementById('brand').value;
-            let model = document.getElementById('model').value;
-            let year = document.getElementById('year').value;
-            let maxSpeed = document.getElementById('maxSpeed').value;
-            let numberOfDoors = document.getElementById('numberOfDoors').value;
-            let engine = document.getElementById('engine').value;
-            let isAutomatic = document.getElementById('isAutomatic').value;
-            alert(brand + '\n' + model+ '\n'+ year+'\n'+ maxSpeed + '\n'
-            +numberOfDoors +'\n' + engine +'\n' + isAutomatic +'\n');
+            let brand = this.car.brand;
+            let model = this.car.model;
+            let year = this.car.year;
+            let maxSpeed = this.car.maxSpeed;
+            let numberOfDoors = this.car.numberOfDoors;
+            let engine = this.car.engine;
+            let isAutomatic = this.car.isAutomatic;
+            alert("Brand:" + brand + '\n' + "Model:" + model+ '\n'+ "Year:" + year+'\n'+ "naxSpeed:" + maxSpeed + '\n'
+            + "Number of doors:" + numberOfDoors +'\n' + "Engine:" + engine +'\n' + "Automatic:" + isAutomatic +'\n');
 
         }
         
