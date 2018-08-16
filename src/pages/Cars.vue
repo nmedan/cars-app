@@ -33,8 +33,8 @@ export default {
     
     methods: {
         deleteCar(id) {
-          let index = this.cars.findIndex(car => car.id === id)
-          this.cars.splice(index, 1)
+          let index = this.cars.findIndex(car => car.id === id);
+          this.cars.splice(index, 1);
         }    
     }
 

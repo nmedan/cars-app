@@ -21,12 +21,14 @@
  import { cars } from '../services/Cars'
 export default {
   props: ['cars'],
-  methods: {    
+  methods: { 
        deleteCar (id) {
-          cars.delete(id)
-         .then(() => {
-          this.$emit('carDeleted', id)
-        })
+        if (confirm("Do you really want to delete this car?")) {        
+            cars.delete(id)
+            .then(() => {
+            this.$emit('carDeleted', id)
+            })
+        }
       }
 
   }
