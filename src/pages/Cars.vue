@@ -2,7 +2,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col">
-        <AppCars :cars="cars"/>
+        <AppCars :cars="cars" @carDeleted="deleteCar"/>
       </div>
     </div>
   </div>
@@ -30,6 +30,13 @@ export default {
             })
         })
     },
+    
+    methods: {
+        deleteCar(id) {
+          let index = this.cars.findIndex(car => car.id === id)
+          this.cars.splice(index, 1)
+        }    
+    }
 
 }
 </script>

@@ -11,13 +11,24 @@
             <router-link :to="{ name: 'edit-car', params: { id: car.id } }">
                  <button class="btn btn-primary">Edit</button>
             </router-link>  
+            <button class="btn btn-danger" @click="deleteCar(car.id)">Delete</button> 
             <hr/>
        </div>
   </div>
 </template>
 
 <script>
+ import { cars } from '../services/Cars'
 export default {
-  props: ['cars']
+  props: ['cars'],
+  methods: {    
+       deleteCar (id) {
+          cars.delete(id)
+         .then(() => {
+          this.$emit('carDeleted', id)
+        })
+      }
+
+  }
 }
 </script>
