@@ -121,6 +121,7 @@ export default {
     methods: {        
         validated() {
            let result = true;
+           this.errors = [];
            if (!this.car.brand) {
                this.errors.push('Brand field is required');
                result = false;
@@ -157,7 +158,6 @@ export default {
         },
         
         onSubmit()  {
-            this.errors = [];
             if (this.validated())  {
                this.$route.params.id ? this.editCar() : this.addCar();
             }
