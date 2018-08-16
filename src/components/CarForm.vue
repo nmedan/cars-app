@@ -114,13 +114,20 @@ export default {
     },
     methods: {
         onSubmit()  {
-            this.addCar();
+            this.$route.params.id ? this.editCar() : this.addCar()
         },
 
         addCar() {
             cars.add(this.car).then(response=>{this.$router.push
             ('/cars')}).catch(err=>console.log(err))
         },
+        
+         editCar () {
+            cars.edit(this.car)
+            .then(() => {
+            this.$router.push('/cars').catch(err=>console.log(err))
+        })
+    },
 
         getYears() {
             let years = [];
