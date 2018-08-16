@@ -1,11 +1,16 @@
 <template>
   <div>
-   <form @submit.prevent="onSubmit">
+   <form @submit.prevent="onSubmit()">
+     <ul>
+         <li class="list-group-item-danger" v-for="(error, key) in errors" :key = "key">
+             {{error}}
+         </li>
+     </ul>
       <div class="form-group row">
         <label for="brand" class="col-4 col-form-label">Brand</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="brand" name="brand" type="text" minlength="2" required="required" class="form-control here" v-model="car.brand">
+            <input id="brand" name="brand" type="text" class="form-control here" v-model="car.brand">
           </div>
         </div>
       </div>
@@ -13,14 +18,14 @@
         <label for="model" class="col-4 col-form-label">Model</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="model" name="model" type="text" minlength="2" required="required" class="form-control here" v-model="car.model">
+            <input id="model" name="model" type="text" class="form-control here" v-model="car.model">
           </div>
         </div>
       </div>
       <div class="form-group row">
         <label for="year" class="col-4 col-form-label">Year</label>
         <div class="col-8">
-          <select id="year" name="year" type="number" required="required" class="form-control here" v-model="car.year">
+          <select id="year" name="year" type="number" class="form-control here" v-model="car.year">
               <option selected value="">
                    Select year
               </option>
@@ -42,7 +47,7 @@
         <label for="numberOfDoors" class="col-4 col-form-label">Number of doors</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="numberOfDoors" name="numberOfDoors" type="number" required="required" class="form-control here" v-model="car.numberOfDoors">
+            <input id="numberOfDoors" name="numberOfDoors" type="number" class="form-control here" v-model="car.numberOfDoors">
           </div>
         </div>
       </div>
@@ -103,7 +108,8 @@ export default {
          numberOfDoors:'',
          isAutomatic:false,
          engine:''
-         } 
+         },
+         errors:[],
       }
     },
     created() {
@@ -112,9 +118,50 @@ export default {
           (this.car=response.data)).catch(err => console.log(err))
         }
     },
-    methods: {
+    methods: {        
+        validated() {
+           let result = true;
+           if (!this.car.brand) {
+               this.errors.push('Brand field is required');
+               result = false;
+           }
+           else if (this.car.brand.length<2) {
+               this.errors.push('Brand must have at least 2 characters');   
+               result = false;
+           }
+               
+           if (!this.car.model) {
+               this.errors.push('Model field is required');
+               result = false;     
+           }
+           else if (this.car.model.length<2) {
+               this.errors.push('Model mush have at least 2 characters');
+               result = false;  
+           }
+               
+           if(!this.car.year) {
+               this.errors.push('You must select year');
+               result = false;      
+           }
+               
+           if(!this.car.numberOfDoors) {
+               this.errors.push('Number of doors field is required');
+               result = false;     
+           }
+               
+           if(!this.car.engine) {
+               this.errors.push('You must select engine');
+               result = false;
+           }
+           return result;
+        },
+        
         onSubmit()  {
-            this.$route.params.id ? this.editCar() : this.addCar()
+            this.errors = [];
+            if (this.validated())  {
+               this.$route.params.id ? this.editCar() : this.addCar();
+            }
+         
         },
 
         addCar() {
